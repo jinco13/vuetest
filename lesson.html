@@ -13,8 +13,9 @@
   <button v-on:click="onclick(3)">{{count}}</button>
   <p v-on:mousemove="updateCoordinates">
     Coordinates: {{ x }} / {{ y }}
-    <span v-on:mousemove="dummy">DEAD SPOT</span>
+    <span v-on:mousemove.stop="">DEAD SPOT</span>
   </p>
+  <input type="text" v-on:keyup.enter="alertMe"/>
 </div>
 </body>
 <script>
@@ -39,8 +40,8 @@ new Vue({
     onclick: function(a){
       this.count = this.count+a;
     },
-    dummy: function(event){
-      event.stopPropagation();
+    alertMe: function(){
+      alert('akert');
     }
   }
 });
