@@ -4,20 +4,37 @@
 <script src="https://unpkg.com/vue@2.5.2/dist/vue.js"></script>
 </head>
 <body>
-<div id="app">
-  <input type="text" v-on:input="changeTitle">
-  <p>{{ title }}</p>
+<div id="exercise">
+  <p>Vue JS is pretty cool! - {{ name }}({{ age }})</p>
+  <p>{{ age * 3 }}</p>
+  <p>{{ random_num(1) }}</p>
+  <p><img v-bind:src="img_path"/></p>
+  <p><input type="text" v-bind:value="name"/></p>
+  <button v-on:click="onclick(3)">{{count}}</button>
+  <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
 </div>
 </body>
 <script>
 new Vue({
-  el: '#app',
+  el: '#exercise',
   data: {
-    title: 'Hello World!!'
+    count: 1,
+    name: 'cin',
+    age: 3,
+    x: 0,
+    y: 0,
+    img_path: 'https://assets.nikkei.jp/release/v1.3/parts/ds/images/common/logo_nikkei_header_2017.svg'
   },
   methods: {
-    changeTitle: function(event){
-      this.title = event.target.value;
+    updateCoordinates: function(event){
+      this.x = event.clientX;
+      this.y = event.clientY;
+    },
+    random_num: function(seed){
+      return Math.random(seed);
+    },
+    onclick: function(a){
+      this.count = this.count+a;
     }
   }
 });
