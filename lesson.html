@@ -11,7 +11,10 @@
   <p><img v-bind:src="img_path"/></p>
   <p><input type="text" v-bind:value="name"/></p>
   <button v-on:click="onclick(3)">{{count}}</button>
-  <p v-on:mousemove="updateCoordinates">Coordinates: {{ x }} / {{ y }}</p>
+  <p v-on:mousemove="updateCoordinates">
+    Coordinates: {{ x }} / {{ y }}
+    <span v-on:mousemove="dummy">DEAD SPOT</span>
+  </p>
 </div>
 </body>
 <script>
@@ -35,6 +38,9 @@ new Vue({
     },
     onclick: function(a){
       this.count = this.count+a;
+    },
+    dummy: function(event){
+      event.stopPropagation();
     }
   }
 });
