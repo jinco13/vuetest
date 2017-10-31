@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<script src="https://unpkg.com/vue@2.5.2/dist/vue.js"></script>
+</head>
+<body>
+<div id="exercise">
+  <p :class="divClasses" @click="yay">Current Value: {{ value }}</p>
+  <button @click="value += 5">Add 5</button>
+  <button @click="value += 1">Add 1</button>
+  <p>{{ result }}</p>
+</div>
+</body>
+<script>
+new Vue({
+  el: '#exercise',
+  data: {
+    value: 0,
+    attachRed: false
+  },
+  methods: {
+    yay: function(){
+      this.attachRed = !this.attachRed
+    }
+  },
+  computed: {
+    result: function(){
+      return this.value >= 37 ? "above" : ""
+    },
+    divClasses: function(){
+      return {
+        red: this.attachRed,
+        green: !this.attachRed,
+      }
+    }
+  },
+  watch: {
+    result: function(){
+      alert("watch triggered");
+      var vm = this;
+      setTimeout(function(){
+        vm.value = 0;
+      },5000);
+    }
+  }
+});
+</script>
+<style>
+  .red { background-color: red; }
+  .greend { background-color: green; }
+</style>
+</html>
