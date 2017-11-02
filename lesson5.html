@@ -10,6 +10,17 @@
     <ul>
       <li v-for="(item, i) in items">{{ item }}({{ i + 1 }})</li>
     </ul>
+    <ul>
+
+    </ul>
+    <template v-for="person in persons">
+      <li>
+        <span v-for="(value, key) in person">
+          <label><strong>{{ key }}</strong></label>
+          {{ value }}
+        </span>
+      </li>
+    </template>
   </div>
 </div>
 </body>
@@ -18,6 +29,11 @@ new Vue({
   el: '#exercise',
   data: {
     items: ['meat','banana','water','icecream'],
+    persons: [
+      {name: 'hoge', age: 13},
+      {name: 'foo', age: 15},
+      {name: 'bar', age: 34},
+    ],
   },
   methods: {
     addElem: function(){
