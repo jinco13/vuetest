@@ -13,8 +13,8 @@
     <ul>
 
     </ul>
-    <template v-for="person in persons">
-      <li>
+    <template v-for="(person, i) in persons">
+      <li>{{ i + 1 }}:
         <span v-for="(value, key) in person">
           <label><strong>{{ key }}</strong></label>
           {{ value }}
